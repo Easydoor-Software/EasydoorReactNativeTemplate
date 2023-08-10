@@ -1,0 +1,42 @@
+name: Run ESLint on Pull Requests
+
+on: [pull_request]
+
+jobs:
+  lint:
+    name: Run ESLint
+    runs-on: ubuntu-latest
+    steps:
+      
+      # Check out the repository
+      - uses: actions/checkout@v1
+
+      # Install Node.js
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16
+
+      # Install your dependencies
+      - run: yarn
+
+      # Run ESLint
+      - run: yarn lint
+   
+  test:
+     name: Run Jest
+     runs-on: ubuntu-latest
+     steps:
+     
+      # Check out the repository
+      - uses: actions/checkout@v1
+
+      # Install Node.js
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16
+
+      # Install your dependencies
+      - run: yarn
+      
+      # Run tests with Jest
+      - run: yarn test
